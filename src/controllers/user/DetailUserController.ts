@@ -11,7 +11,7 @@ class DetailUserController {
     
         const user = await detailUserService.execute(userId);
     
-        return response.json(user);
+        return response.status(200).json(user);
 
     } catch (err) {
       next(err);
