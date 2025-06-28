@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// File: prisma/schema.prisma
+// This file defines the Prisma schema for the User model.
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+ 
+
+  @@map("users")
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  Product   Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String
+  price       String
+  description String
+  banner      String
+  categoryId  String
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
+  items       Item[]
+  
+
+
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@map("products")
+}
+
+
+model Order {
+  id        String    @id @default(uuid())
+  table Int
+  status Boolean @default(false)
+  draft Boolean @default(false)
+  name String?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  items Item[]
+
+  @@map("orders")
+}
+
+model Item {
+  id        String    @id @default(uuid())
+  amount    Int
+  orderId   String
+  productId String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+ 
+
+  @@map("items")
+}
