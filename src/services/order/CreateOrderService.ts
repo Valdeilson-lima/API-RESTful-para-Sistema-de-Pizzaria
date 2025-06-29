@@ -41,7 +41,7 @@ class CreateOrderService {
         id: order.id,
         table: order.table,
         name: order.name,
-        message: `Pedido da mesa ${order.table} criado com sucesso!`
+        message: `Mesa ${order.table} aberta com sucesso!`
     }
   }
 }
