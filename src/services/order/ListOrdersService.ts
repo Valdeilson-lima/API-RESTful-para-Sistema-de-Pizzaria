@@ -30,8 +30,6 @@ class ListOrdersService {
         draft: order.draft,
         table: order.table,
         name: order.name,
-        createAt: order.createdAt,
-        updateAt: order.updatedAt,
       })),
       message: "Pedidos listados com sucesso!",
     };

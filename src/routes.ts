@@ -31,7 +31,7 @@ import { FinishOrderController } from "./controllers/order/FinishOrderController
 
 const router = Router();
 
-const upload = multer(uploadConfig.upload("./tmp"));
+const upload = multer(uploadConfig.upload("product-images"));
 
 
 /**
@@ -187,7 +187,7 @@ router.get("/category/list", isAuthenticated, new ListCategoryController().handl
  *       200:
  *         description: Product created successfully
  */
-router.post("/product", isAuthenticated, upload.single('file'), new CreateProductController().handle);
+router.post("/product", isAuthenticated, upload.single("file"), new CreateProductController().handle);
 
 /**
  * @swagger

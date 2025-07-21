@@ -4,6 +4,9 @@ import { CreateProductService } from "../../services/product/CreateProductServic
 class CreateProductController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log("Requisição recebida:");
+      console.log("req.body:", req.body);
+      console.log("req.file:", req.file); //
       const { name, price, description, categoryId } = req.body;
 
       const createProductService = new CreateProductService();
@@ -12,7 +15,7 @@ class CreateProductController {
       if (!req.file) {
         throw new Error("É obrigatório enviar o arquivo da imagem do produto");
       } else {
-        const { fieldname: banner } = req.file;
+        const { path: banner } = req.file;
 
         const product = await createProductService.execute({
           name,

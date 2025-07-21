@@ -12,9 +12,14 @@ API para um sistema de pizzaria, desenvolvida em Node.js com TypeScript e Prisma
     ```bash
     npm install
     ```
-3.  Configure as variáveis de ambiente em um arquivo `.env`. Veja o arquivo `.env.example` para um exemplo.
+3. Configure as variáveis de ambiente em um arquivo `.env`. Veja o arquivo `.env.example` para um exemplo. Certifique-se de incluir as variáveis de ambiente para o Cloudinary:
+    ```
+    CLAUDINARY_NAME=seu_cloud_name
+    CLAUDINARY_KEY=sua_api_key
+    CLAUDINARY_SECRET=seu_api_secret
+    ```
 
-4.  Execute as migrações do banco de dados:
+4. Execute as migrações do banco de dados:
     ```bash
     npx prisma migrate dev
     ```
