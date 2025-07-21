@@ -9,7 +9,7 @@ class DetailUserController {
         
         const detailUserService = new DetailUserService();
     
-        const user = await detailUserService.execute(userId);
+        const user = await detailUserService.execute(userId!);
     
         return response.status(200).json(user);
 

@@ -1,5 +1,14 @@
 import prismaClient from "../../prisma";
 
+
+interface Order {
+  id: string;
+  status: string;
+  draft: boolean;
+  table: number;
+  name: string;
+}
+
 class ListOrdersService {
   async execute() {
     // Fetch all orders from the database

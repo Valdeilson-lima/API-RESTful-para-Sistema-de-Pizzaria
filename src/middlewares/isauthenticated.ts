@@ -17,7 +17,13 @@ export function isAuthenticated(
     return response.status(401).json({ error: "Token inválido" });
   }
 
-  const [, token] = authToken.split(" ");
+  const parts = authToken.split(" ");
+
+  if (parts.length !== 2 || parts[0] !== "Bearer") {
+    return response.status(401).json({ error: "Token inválido" });
+  }
+
+  const [, token] = parts;
 
   try {
     // Verify if the token is valid

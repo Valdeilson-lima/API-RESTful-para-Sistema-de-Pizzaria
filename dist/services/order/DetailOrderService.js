@@ -1,0 +1,43 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DetailOrderService = void 0;
+const prisma_1 = __importDefault(require("../../prisma"));
+class DetailOrderService {
+    execute(_a) {
+        return __awaiter(this, arguments, void 0, function* ({ orderId }) {
+            // Validação: se não enviar o id do pedido
+            if (!orderId) {
+                throw new Error("ID do pedido não enviado!");
+            }
+            // Fetch the order details from the database
+            const orders = yield prisma_1.default.item.findMany({
+                where: {
+                    orderId: orderId,
+                },
+                include: {
+                    product: true,
+                    order: true, // Include the order details
+                },
+            });
+            // Validação: se enviar um id de pedido errado (não encontrado)
+            if (!orders || orders.length === 0) {
+                throw new Error("Pedido não encontrado!");
+            }
+            // Return the order details
+            return orders;
+        });
+    }
+}
+exports.DetailOrderService = DetailOrderService;

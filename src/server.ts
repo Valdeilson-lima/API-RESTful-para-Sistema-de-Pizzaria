@@ -4,7 +4,7 @@ import cors from "cors";
 import path from "path";
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './config/swagger';
-import fileUpload from "express-fileupload";
+
 
 const app = express();
 app.use(cors());
@@ -27,6 +27,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-app.listen(3333, () => {
+app.listen(process.env.PORT || 3333, () => {
   console.log("Servidor rodando na porta 3333");
 });
