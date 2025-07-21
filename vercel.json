@@ -1,6 +1,5 @@
 {
     "version": "1.0.0",
-    "license": "ISC",
     "builds":[
         {
             "src": "dist/server.js",
