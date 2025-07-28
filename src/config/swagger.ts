@@ -10,7 +10,7 @@ const swaggerOptions: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: 'https://api-res-tful-para-sistema-de-pizzar.vercel.app/',
+        url: 'https://api-res-tful-para-sistema-de-pizzar.vercel.app',
       },
     ],
     components: {
